@@ -1,5 +1,5 @@
 # LAB 1 - Working with the Data Lake
-In this lab you will launch a new Redshift Cluster, setup connectivity and configure a JDBC Client tool.
+In this lab you will launch a new Redshift Cluster, setup connectivity and configure a JDBC Client tool..
 
 ![screenshot](images/Console.png)
 
