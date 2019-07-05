@@ -25,22 +25,25 @@ In this lab you will setup a basic data lake environment, load some data, and be
 ### Navigate to your S3 bucket
 The S3 bucket that we will use in these labs should already exist.  It was created for you in the setup instructions run by your administrator.
 
-* In the AWS Console, use the Services menu and navigate to the S3 console.  One way to do so, is to expand the Services menu and type "S3" in the find a service search field.
-* In the S3 console, look for a bucket called "lab-introdatalake-[your_company]".  Click on that bucket.
+* In the AWS Console, use the Services menu and navigate to the S3 console.  One way to do so, is to expand the Services menu and type "S3" in the service search field.
+* In the S3 console, look for a bucket called "lab-introdatalake-[your_company]".  
   * If you don't see a "lab-introdatalake-[your_company]" bucket, then your site administrator should re-visit the Lab Setup instructions.
 
 ![screenshot](images/S31.png)
 
+* Click on the "lab-introdatalake-[your_company]" bucket.
+
 ![screenshot](images/S32.png)
 
 ### Create folders in the S3 bucket to capture your data lake structure
+For this lab, we will define a folder hierarchy for our data lake.  At the top-level, we will have separate folders for "raw" datasets and for "processed" datasets.  Within each of those folders, we will use sub-folders to indicate the dataset name.  As multiple users may be using the same S3 bucket in the labs, please use your initials when creating/naming folders.
 
 * Click on "Create folder"
 * Enter the name "raw_[initials]", where [initials] is your initials.
 
 ![screenshot](images/S33.png)
 
-* Click Save to create the raw_db folder/prefix.
+* Click Save to create the raw_db folder.
 * Repeat the above process to create a 2nd folder called "processed_[initials]".
 
 ![screenshot](images/S34.png)
@@ -49,11 +52,11 @@ The S3 bucket that we will use in these labs should already exist.  It was creat
 These labs will use the public Amazon Customer Reviews dataset. Amazon Customer Reviews (a.k.a. Product Reviews) is one of Amazon’s iconic products. In a period of over two decades since the first review in 1995, millions of Amazon customers have contributed over a hundred million reviews to express opinions and describe their experiences regarding products on the Amazon.com website.  Find out more about the dataset [here](https://s3.amazonaws.com/amazon-reviews-pds/readme.html).
 
 
-* Download the sample dataset to your local computer from [https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz](https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz).  Save the dataset file somewhere where you can easily find it later.
+* Download a sample dataset to your local computer from [https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz](https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz).  This dataset contains reviews for products in the Kitchen product category.  Save the dataset file somewhere where you can easily find it later.
 
 ![screenshot](images/Download.png)
 
-### Upload the sample dataset
+### Upload the sample dataset to the Data Lake
 
 * In your S3 console, navigate into the raw_[your-initials] folder.
 * Click on Create Folder to create a sub-folder under your raw folder.
@@ -66,19 +69,19 @@ These labs will use the public Amazon Customer Reviews dataset. Amazon Customer 
 
 ![screenshot](images/Upload.png)
 
-* Click Upload
+* Click Upload and wait for the upload to finish.
 
 
 ## Catalog our new dataset
 At this point, we have uploaded a new dataset but we don't really know what the data is.  Our next activity will be to try to determine some more knowledge about the contents of the dataset.  We will use Glue to investigate our new dataset's contents and to keep track of that metadata for future use.
 
 * Navigate to the Glue console.
-  * Hint: You can use the Services menu to navigate.
+  * Hint: You can use the Services menu to navigate to Glue.
 * If this is your first time using Glue, click the Get started button
 
 ![screenshot](images/Glue1.png)
 
-* Click the "Add tables using a crawler" button
+* Click the "Add tables using a crawler" button.  A Glue Crawler can inspect our new dataset and try to determine its contents and structure for us.
 
 ![screenshot](images/Glue2.png)
 
@@ -156,7 +159,7 @@ At this point, we have uploaded a new dataset but we don't really know what the 
 ```
 select count(*) from reviews;
 ```
-* Click "Run query"
+* Click "Run query".  You should see that there are 4.8 million reviews in the Kitchen product category dataset that we uploaded to the data lake.
 
 ![screenshot](images/Athena3.png)
 
@@ -174,10 +177,10 @@ select product_title,
 
 ![screenshot](images/Athena4.png)
 
-* Notice that the product with the most "helpful review" votes is the Hutzler 571 Banana Slicer.  If you want to view it, check it out on [amazon.com](https://www.amazon.com/dp/B0047E0EII)
+* Notice that the product with the most "helpful review" votes is the Hutzler 571 Banana Slicer.  If you want to view this product, check it out on [amazon.com](https://www.amazon.com/dp/B0047E0EII).  We'll explore some of these most helpful reviews more in Lab2.
 
 ## Adding other data from the public dataset to your catalog
-For later in the lab, we will add some additional customer reviews.  In this case, we will do so via DDL.
+For later in the lab, we want to be able to query all of the public product reviews- not just the ones for products in Kitchen product category.  Amazon.com has made the full set of product categories available on S3 in parquet format.  Rather than downloading and uploading all of this data to our S3 bucket, we will simply point to where it is stored publicly.  We could define our all_reviews_parquet table via a Glue Crawler, but in this case we defne this table via a SQL command.
 
 * Click the + sign to open a new query tab.  Enter this query
 
@@ -213,7 +216,7 @@ LOCATION
 
 ![screenshot](images/Athena5.png)
 
-* Click the + sign to open a new query tab.  Enter this query
+* Because the full public Customer Reviews is stored as a set of partition datasets, we have one extra step which is to run a command to re-scan the partition structure so that our Glue/Athena catalog is aware of it.  Click the + sign to open a new query tab.  Enter this query
 
 ```
 MSCK REPAIR TABLE all_reviews_parquet;
@@ -223,7 +226,7 @@ MSCK REPAIR TABLE all_reviews_parquet;
 
 ![screenshot](images/Athena6.png)
 
-* Click the + sign to open a new query tab.  Enter this query:
+* Now, let's run the same query as before (looking for the products with the most helpful reviews in the Kitchen category).  Click the + sign to open a new query tab.  Enter this query:
 ```
 select product_title,
        sum(helpful_votes) helpful_votes,
@@ -238,11 +241,11 @@ select product_title,
 
 ![screenshot](images/Athena7.png)
 
-* Notice that the query against the all_reviews_parquet table ran much faster than the query against the reviews table.  This is because the all_reviews_parquet table points to a dataset in the optimized parquet format, while the reviews table points to a dataset in a less optimized format (text csv).
+* Notice that the query against the all_reviews_parquet table ran much faster than our earlier query against the reviews table.  This is because the all_reviews_parquet table points to a dataset in the optimized parquet format, while the reviews table points to a dataset in a less optimized format (text csv).
 
 
 ## OPTIONAL Make our data faster
-In this section, we will process our raw dataset into a more optimized format.  Specifically, we will transform it from a text csv format into the columnar parquet format using Glue.
+In this section, we will transform our raw dataset into a more optimized format.  Specifically, we will transform it from a text csv format into the columnar parquet format using Glue.
 
 * Navigate to the Glue console
 * Click on Jobs in the left-hand column
