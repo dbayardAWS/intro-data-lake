@@ -26,262 +26,167 @@ In this lab you will integrate Amazon Redshift to your data lake.
 ![screenshot](images/RS2.png)
 
 * Click the Launch cluster button
-* Click the "View all clusters" button and wait for your cluster to be created.  This can take 15 minutes or so.
+* Click the "View all clusters" button and wait for your cluster to be created (the Cluster Status will say "available").  This can take 15 minutes or so.
+
+![screenshot](images/RS3.png)
 
 ## Connect to your Redshift Cluster
 There are multiple ways to connect to your new Redshift cluster, including via JDBC and ODBC.  For this lab, we will use the Query editor that is part of the Redshift console.
 
 * Once your Redshift cluster is created, click on "Query editor" on the left-hand column.
+* In the Credentials pop-up, choose "redshift-cluster-[initials]" as the Cluster.
+* Enter "dev" as the Database.
+* Enter "awsuser" as the Database user.
+* Enter the password you used earlier.  If you followed the lab's suggestion, that password would be "AWSuser1!".
 
-### Create folders in the S3 bucket to capture your data lake structure
+![screenshot](images/RS4.png)
 
-* Click on "Create folder"
-* Enter the name "raw_[initials]", where [initials] is your initials.
-
-![screenshot](images/S33.png)
-
-* Click Save to create the raw_db folder/prefix.
-* Repeat the above process to create a 2nd folder called "processed_[initials]".
-
-![screenshot](images/S34.png)
-
-### Download sample dataset
-These labs will use the public Amazon Customer Reviews dataset. Amazon Customer Reviews (a.k.a. Product Reviews) is one of Amazon’s iconic products. In a period of over two decades since the first review in 1995, millions of Amazon customers have contributed over a hundred million reviews to express opinions and describe their experiences regarding products on the Amazon.com website.  Find out more about the dataset [here](https://s3.amazonaws.com/amazon-reviews-pds/readme.html).
+* Click Connect
 
 
-* Download the sample dataset to your local computer from [https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz](https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz).  Save the dataset file somewhere where you can easily find it later.
+## Load data from our data lake into Redshift
 
-![screenshot](images/Download.png)
-
-### Upload the sample dataset
-
-* In your S3 console, navigate into the raw_[your-initials] folder.
-* Click on Create Folder to create a sub-folder under your raw folder.
-* Enter the name "reviews"
-* Click on Save to create the reviews folder
-* Click on the new reviews folder to open it
-* Click the Upload button
-* Click the Add files button
-* Choose the dataset file you just downloaded.  It should be named amazon_reviews_us_Kitchen_v1_00.tsv.gz
-
-![screenshot](images/Upload.png)
-
-* Click Upload
-
-
-## Catalog our new dataset
-At this point, we have uploaded a new dataset but we don't really know what the data is.  Our next activity will be to try to determine some more knowledge about the contents of the dataset.  We will use Glue to investigate our new dataset's contents and to keep track of that metadata for future use.
-
-* Navigate to the Glue console.
-  * Hint: You can use the Services menu to navigate.
-* If this is your first time using Glue, click the Get started button
-
-![screenshot](images/Glue1.png)
-
-* Click the "Add tables using a crawler" button
-
-![screenshot](images/Glue2.png)
-
-* Enter "Crawl_Raw_Reviews_[your-initials]" for the Crawler name
-* Click Next
-* Select "Data Stores" as the crawler source type
-* Click Next
-* Choose S3 for the data store
-* Choose crawl data in "specified path in my account"
-* Click on the folder icon to pop open the Choose S3 path window.
-* Expand the lab-introdatalake-[company] bucket.  Expand the raw_[initials] folder. Select the "reviews" folder.
-
-![screenshot](images/Glue3.png)
-
-* Click the Select button to close the pop-up.  Your include path should look like "s3://lab-introdatalake-[company]/raw_[initials]/reviews"
-* Click Next
-* Choose No to add another data store
-* Click Next
-* Click "Choose an existing IAM role"
-* Using the IAM role drop-down, select "Lab-IntroDataLake-Glue"
-
-![screenshot](images/Glue4.png)
-
-* Click Next
-* Choose "Run on demand"
-* Click Next
-* Click the "Add database" button
-* Name the database "Reviews_[initials]"
-
-![screenshot](images/Glue5.png)
-
-* Click Create
-* Click Next
-* Click Finish
-* Click on the "Run it now?" link
-
-![screenshot](images/Glue6.png)
-
-* Wait for the Crawler to run and finish.  It will take about a minute.  There is a refresh icon on the right hand side of the page to refresh the page with the latest Status.
-
-![screenshot](images/Glue7.png)
-
-### View our new dataset structure
-
-* Click on the Databases link on the left-column of the page.  You should see your new reviews_[initials] database.
-
-![screenshot](images/Glue8.png)
-
-* Click on the reviews_[initials] link.
-* Click on the "Tables in reviews_[initials]" link
-
-![screenshot](images/Glue9.png)
-
-* Click on the "reviews" table
-
-![screenshot](images/Glue10.png)
-![screenshot](images/Glue11.png)
-
-* Notice how the Glue crawler was able to identify the underlying structure and format (the metadata) of our new dataset.
-
-## Query our new data
-
-* Navigate to the Athena console.
-  * Hint: You can use the Services menu to navigate.
-* If this is your first time using Athena, click the Get started button
-
-![screenshot](images/Athena1.png)
-
-* If the Tutorial window pops-up, then close it by clicking the X in the upper right.
-* Make sure the Database drop-down points to "reviews_[initials]".  If not, change it.  You should see your reviews table.
-
-![screenshot](images/Athena2.png)
-
-* In the "New query 1" box, enter this query:
+* In the New Query 1 tab, enter this query:
 ```
-select count(*) from reviews;
-```
-* Click "Run query"
-
-![screenshot](images/Athena3.png)
-
-* Click the + sign to the right of New query 1 to open a new query tab.  Enter this query:
-```
-select product_title,
-       sum(helpful_votes) helpful_votes,
-       'https://www.amazon.com/dp/'||product_id url
-  from reviews
- group by product_title, product_id
- order by 2 desc
- limit 20;
-```
-* Click "Run query"
-
-![screenshot](images/Athena4.png)
-
-* Notice that the product with the most "helpful review" votes is the Hutzler 571 Banana Slicer.  If you want to view it, check it out on [amazon.com](https://www.amazon.com/dp/B0047E0EII)
-
-## Adding other data from the public dataset to your catalog
-For later in the lab, we will add some additional customer reviews.  In this case, we will do so via DDL.
-
-* Click the + sign to open a new query tab.  Enter this query
-
-```
-CREATE EXTERNAL TABLE all_reviews_parquet(
-  marketplace string, 
-  customer_id string, 
-  review_id string, 
-  product_id string, 
-  product_parent string, 
-  product_title string, 
+CREATE  TABLE redshift_reviews(
+  marketplace varchar(20), 
+  customer_id varchar(20), 
+  review_id varchar(20), 
+  product_id varchar(20), 
+  product_parent varchar(20), 
+  product_title varchar(400), 
+  product_category varchar(40), 
   star_rating int, 
   helpful_votes int, 
   total_votes int, 
-  vine string, 
-  verified_purchase string, 
-  review_headline string, 
-  review_body string, 
-  review_date bigint, 
-  year int)
-PARTITIONED BY (product_category string)
-ROW FORMAT SERDE 
-  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
-STORED AS INPUTFORMAT 
-  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
-OUTPUTFORMAT 
-  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
-LOCATION
-  's3://amazon-reviews-pds/parquet/';
-```  
-
-* Click "Run query"
-
-![screenshot](images/Athena5.png)
-
-* Click the + sign to open a new query tab.  Enter this query
-
+  vine varchar(20), 
+  verified_purchase varchar(20), 
+  review_headline varchar(200), 
+  review_body varchar(5000), 
+  review_date date);
 ```
-MSCK REPAIR TABLE all_reviews_parquet;
-```  
-
 * Click "Run query"
 
-![screenshot](images/Athena6.png)
+![screenshot](images/RS5.png)
 
-* Click the + sign to open a new query tab.  Enter this query:
+* Click the + sign next to the New Query 1 tab, then enter this query (but do not run it yet):
+```
+copy redshift_reviews from
+ 's3://lab-introdatalake-acme/raw_db/reviews/amazon_reviews_us_Kitchen_v1_00.tsv.gz'
+  credentials 'aws_iam_role=arn:aws:iam::0000000000000:role/Lab-IntroDataLake-Redshift'
+  delimiter '\t' ignoreheader 1 gzip truncatecolumns maxerror 20;
+```
+* Replace the "acme" part of the s3 bucket name with your company name so that it matches the bucket you are using in this lab.
+* Replace the "db" part of the "raw_db" s3 folder with your initials so that it matches the folder name you used in lab1.
+* Replace the "0000000000000" with your AWS Account #.  Hint: you can find the account number by clicking on your username on the top menu bar in the AWS console.  Enter the account# but do not enter the hyphens.
+* Click "Run query".  The Copy command should take 1-2 minutes to finish.
+
+![screenshot](images/RS6.png)
+
+* Note: if you run into an error during the copy, please run this query and speak to your instructor: select * from stl_load_errors order by starttime desc;
+
+
+* Click the + sign to open a new query tab, and enter this query:
+```
+select count(*) from redshift_reviews;
+```
+* Click "Run query"
+
+![screenshot](images/RS7.png)
+
+* Click the + sign to open a new query tab, and enter this query:
 ```
 select product_title,
        sum(helpful_votes) helpful_votes,
        'https://www.amazon.com/dp/'||product_id url
-  from all_reviews_parquet
- where product_category='Kitchen'
+  from redshift_reviews
  group by product_title, product_id
  order by 2 desc
  limit 20;
 ```
 * Click "Run query"
 
-![screenshot](images/Athena7.png)
+![screenshot](images/RS8.png)
 
-* Notice that the query against the all_reviews_parquet table ran much faster than the query against the reviews table.  This is because the all_reviews_parquet table points to a dataset in the optimized parquet format, while the reviews table points to a dataset in a less optimized format (text csv).
+* Click the + sign to open a new query tab, and enter this query:
+```
+select review_headline, 
+  replace(replace(replace(review_body,'\\',''),'<br />','\n  '),'&#34;','"') review_body,
+  customer_id
+  from redshift_reviews
+ where product_title='Hutzler 571 Banana Slicer'
+ order by helpful_votes desc
+ limit 50;
+```
+* Click "Run query".  Read some of the reviews.  My favorite is #7 "Right Hand/Left Hand Problem Solved".
+
+![screenshot](images/RS9.png)
+
+* Click the + sign to open a new query tab, and enter this query:
+```
+create table top_banana_reviewers as
+select customer_id
+from redshift_reviews
+ where product_title='Hutzler 571 Banana Slicer'
+ order by helpful_votes desc
+ limit 20;
+```
+
+* Click "Run query".
+
+![screenshot](images/RS10.png)
 
 
-## OPTIONAL Make our data faster
-In this section, we will process our raw dataset into a more optimized format.  Specifically, we will transform it from a text csv format into the columnar parquet format using Glue.
+ 
 
-* Navigate to the Glue console
-* Click on Jobs in the left-hand column
-* Click on the Add job button
-* Enter "ETL_Raw_Reviews_[initials]" for the Name
-* Choose Lab-IntroDataLake-Glue for the IAM role
-* Choose Spark for the type
-* Choose "A proposed script generated by AWS Glue"
-* Choose Python
-* Leave other fields at their defaults
+## Query data in our data lake from Redshift (without loading it)
+In this section, we will now show you the features of Redshift known as Redshift Spectrum.  This lets you query data on S3 without copying it into Redshift.
 
-![screenshot](images/ETL1.png)
+* Click the + sign to open a new query tab, and enter this query (but do not run it yet):
+```
+create external schema reviews_data_lake 
+from data catalog 
+database 'reviews_db' 
+iam_role 'arn:aws:iam::00000000000000:role/Lab-IntroDataLake-Redshift'
+create external database if not exists;
+```
+* Replace the "db" part of the "reviews_db" database name with your initials so that it matches the Glue/Athena catalog database name you used in lab1.
+* Replace the "0000000000000" with your AWS Account #.  Hint: you can find the account number by clicking on your username on the top menu bar in the AWS console.  Enter the account# but do not enter the hyphens.
+* Click "Run query". 
 
-* Click Next
-* Choose "reviews" from the "reviews_[initials]" database as the data source
-* Click Next
-* Choose "Create tables in your data target"
-* Choose Amazon S3
-* Choose Parquet
-* Click the folder icon. Select the "processed_[initials]" folder.
+![screenshot](images/RS11.png)
 
-![screenshot](images/ETL2.png)
+* Click the + sign to open a new query tab, and enter this query:
+```
+select product_category, count(*)
+  from reviews_data_lake.all_reviews_parquet
+ group by product_category
+ order by 2 desc;
+```
 
-* Append "/reviews" to the end of the S3 target path
+* Click "Run query".  Note that you can see the reviews from all of the product categories as we are querying the data lake directly (recall that we only loaded Kitchen reviews into Redshift earlier).
 
-![screenshot](images/ETL3.png)
+![screenshot](images/RS12.png)
 
-* Click Next
-* Review the column mappings (you don't need to change anything).  Then click the "Save job and edit script" button
-* If the script editor tips pop-up appears, close it by clicking the X in the upper right
-* Review the job script editor as desired.  Then click the "Run job" button.
-* Click "Run job" in the pop-up window.
-* Wait for the job to run.  Note: this can take 10 minutes or so.
+## Query data across both Redshift and the data lake
+Let's see what other reviews our top Hutlzer 571 Banana Slicer reviewers also wrote.  We will take our top_banana_reviewers table stored inside Redshift and join it to our external all_reviews_parquet table stored in S3 on the data lake.
 
-![screenshot](images/ETL4.png)
+* Click the + sign to open a new query tab, and enter this query:
+```
+select 
+  product_category, product_title, sum(helpful_votes)
+  from reviews_data_lake.all_reviews_parquet
+ where customer_id in (select customer_id from top_banana_reviewers)
+   and product_title!='Hutzler 571 Banana Slicer'
+ group by product_category, product_title  
+ order by 3 desc
+ limit 50;
+```
 
-* Navigate to the S3 console, then look at the "processed_[initials]/reviews" folder in your "lab-introdatalake-[company]" bucket.  You will see a number of parquet files that were created by your glue ETL job.
+* Click "Run query".  Here you can see the power of Redshift with Spectrum to be able to easily combine Data Warehouse data with Data Lake data.  And the "Accoutrements Yodelling Pickle" certainly seems like it may be worth further exploration...
 
-![screenshot](images/ETL5.png)
+![screenshot](images/RS13.png)
+
 
 
 ## Before You Leave
