@@ -1,37 +1,37 @@
-# LAB 1 - Building the Data Lake
-In this lab you will setup a basic data lake environment, load some data, and begin to use it.
+# LAB 2 - Extending the lake with Data Warehousing
+In this lab you will integrate Amazon Redshift to your data lake.
 
 
 
 ## Contents
 * [Before You Begin](#before-you-begin)
-* [Setup your initial Data Lake on S3](#setup-your-initial-data-lake-on-s3)
-* [Catalog our new dataset](#catalog-our-new-dataset)
-* [Query our new data](#query-our-new-data)
-* [OPTIONAL Make our data faster](#optional-make-our-data-faster)
 * [Before You Leave](#before-you-leave)
 
 ## Before You Begin
-* Determine and capture the following information.
-  * [Your_AWS_Account_Id]
-  * [Your_AWS_User_Name]
-  * [Your_AWS_Password]
-  * [AWS_Region_to_be_used_for_Lab]
-* Login to the [AWS Console](https://console.aws.amazon.com/). 
-* Switch your console to the assigned [AWS Region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).  
+* Complete Lab1 (although you do not need to the optional Glue ETL activity).  This lab will reference some of the Data Lake objects created in Lab1.
 
-## Setup your initial Data Lake on S3
+## Provision a new Redshift Cluster
 
-### Navigate to your S3 bucket
-The S3 bucket that we will use in these labs should already exist.  It was created for you in the setup instructions run by your administrator.
+* In the AWS Console, use the Services menu and navigate to the Redshift console.  One way to do so, is to expand the Services menu and type "Redshift" in the find a service search field.
 
-* In the AWS Console, use the Services menu and navigate to the S3 console.  One way to do so, is to expand the Services menu and type "S3" in the find a service search field.
-* In the S3 console, look for a bucket called "lab-introdatalake-[your_company]".  Click on that bucket.
-  * If you don't see a "lab-introdatalake-[your_company]" bucket, then your site administrator should re-visit the Lab Setup instructions.
+* In the Redshift console, scroll down to the "Find the best cluster configuration" section.
 
-![screenshot](images/S31.png)
+![screenshot](images/RS1.png)
 
-![screenshot](images/S32.png)
+* Leave the settings at their defaults (20 GB) and click the "Launch this cluster" button
+* In the cluster identified field, change the field to be "redshift-cluster-[initials]".
+* Enter a value for the master user password that you will remember.  If you want a suggestion, you can use "AWSuser1!"
+* In the Available IAM roles drop-down, choose "Lab-IntroDataLake-Redshift" role.
+
+![screenshot](images/RS2.png)
+
+* Click the Launch cluster button
+* Click the "View all clusters" button and wait for your cluster to be created.  This can take 15 minutes or so.
+
+## Connect to your Redshift Cluster
+There are multiple ways to connect to your new Redshift cluster, including via JDBC and ODBC.  For this lab, we will use the Query editor that is part of the Redshift console.
+
+* Once your Redshift cluster is created, click on "Query editor" on the left-hand column.
 
 ### Create folders in the S3 bucket to capture your data lake structure
 
