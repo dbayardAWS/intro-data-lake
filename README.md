@@ -1,8 +1,9 @@
 # Introduction to Data Lakes Immersion Day Labs
-This GitHub project provides a series of lab exercises which help users learn about Data Lakes on the AWS platform.
+This GitHub project provides a series of lab exercises which help users learn about Data Lakes on the AWS platform.  The Labs let users explore and analyze the [Amazon Customer Reviews](https://s3.amazonaws.com/amazon-reviews-pds/readme.html) dataset while gaining first-hand experience with AWS services like S3, Glue, Athena, and Redshift 
 
-## Goals
-This GitHub project provides a series of lab exercises which help users get started with Data Lakes and Data Warehousing on AWS.  It also helps demonstrate the many features built into the platform.
+![Hutzler 571 Banana Slicer](https://m.media-amazon.com/images/S/aplus-media/vc/cdb94420-1192-4a5c-920a-b7328ec99a9f._SR970,300_.jpg)
+
+
 
 ## Labs
 |# |Lab Name |Lab Description |
