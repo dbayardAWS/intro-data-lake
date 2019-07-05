@@ -12,21 +12,21 @@ In this lab you will integrate Amazon Redshift to your data lake.
 
 ## Provision a new Redshift Cluster
 
-* In the AWS Console, use the Services menu and navigate to the Redshift console.  One way to do so, is to expand the Services menu and type "Redshift" in the find a service search field.
+* In the AWS Console, use the Services menu and navigate to the Redshift console.  One way to do so, is to expand the Services menu and type "Redshift" in the service search field.
 
 * In the Redshift console, scroll down to the "Find the best cluster configuration" section.
 
 ![screenshot](images/RS1.png)
 
-* Leave the settings at their defaults (20 GB) and click the "Launch this cluster" button
-* In the cluster identified field, change the field to be "redshift-cluster-[initials]".
+* In the cluster configuration section, you can experiment with the cluster size settings. When you are done, restore the settings to their defaults (20 GB) and click the "Launch this cluster" button
+* In the cluster identifier field, change the field to be "redshift-cluster-[initials]".
 * Enter a value for the master user password that you will remember.  If you want a suggestion, you can use "AWSuser1!"
 * In the Available IAM roles drop-down, choose "Lab-IntroDataLake-Redshift" role.
 
 ![screenshot](images/RS2.png)
 
-* Click the Launch cluster button
-* Click the "View all clusters" button and wait for your cluster to be created (the Cluster Status will say "available").  This can take 15 minutes or so.
+* Click the Launch cluster button, which will start creating your new Redshift cluster.
+* Click the "View all clusters" button and wait for your cluster to be created (the Cluster Status will change to "available").  This can take 15 minutes or so.
 
 ![screenshot](images/RS3.png)
 
@@ -69,7 +69,7 @@ CREATE  TABLE redshift_reviews(
 
 ![screenshot](images/RS5.png)
 
-* Click the + sign next to the New Query 1 tab, then enter this query (but do not run it yet):
+* Now let's load this redshift_reviews table with reviews from the Kitchen product category.  Click the + sign next to the New Query 1 tab, then enter this query (but do not run it yet):
 ```
 copy redshift_reviews from
  's3://lab-introdatalake-acme/raw_db/reviews/amazon_reviews_us_Kitchen_v1_00.tsv.gz'
@@ -83,18 +83,17 @@ copy redshift_reviews from
 
 ![screenshot](images/RS6.png)
 
-* Note: if you run into an error during the copy, please run this query and speak to your instructor: select * from stl_load_errors order by starttime desc;
-
+## Query data in Redshift
 
 * Click the + sign to open a new query tab, and enter this query:
 ```
 select count(*) from redshift_reviews;
 ```
-* Click "Run query"
+* Click "Run query".  There are 4.8 million reviews in the Kitchen product category (we have only loaded the Kitchen category into the redshift_reviews table at this point).
 
 ![screenshot](images/RS7.png)
 
-* Click the + sign to open a new query tab, and enter this query:
+* Let's see what products have the most helpful reviews, based on votes from other users.  Click the + sign to open a new query tab, and enter this query:
 ```
 select product_title,
        sum(helpful_votes) helpful_votes,
@@ -104,7 +103,7 @@ select product_title,
  order by 2 desc
  limit 20;
 ```
-* Click "Run query"
+* Click "Run query".  The Hutzler 571 Banana Slicer has the most votes for helpful reviews.  Let's explore some of those reviews next.
 
 ![screenshot](images/RS8.png)
 
@@ -122,7 +121,7 @@ select review_headline,
 
 ![screenshot](images/RS9.png)
 
-* Click the + sign to open a new query tab, and enter this query:
+* Let's save the top 20 reviewers for the Banana Slicer to a new Redshift table for later use.  Click the + sign to open a new query tab, and enter this query:
 ```
 create table top_banana_reviewers as
 select customer_id
@@ -169,7 +168,7 @@ select product_category, count(*)
 ![screenshot](images/RS12.png)
 
 ## Query data across both Redshift and the data lake
-Let's see what other reviews our top Hutlzer 571 Banana Slicer reviewers also wrote.  We will take our top_banana_reviewers table stored inside Redshift and join it to our external all_reviews_parquet table stored in S3 on the data lake.
+Let's see what other reviews our top Hutlzer 571 Banana Slicer reviewers also wrote.  We will take our internal top_banana_reviewers table stored inside Redshift and join it to our external all_reviews_parquet table stored in S3 on the data lake.
 
 * Click the + sign to open a new query tab, and enter this query:
 ```
@@ -183,7 +182,7 @@ select
  limit 50;
 ```
 
-* Click "Run query".  Here you can see the power of Redshift with Spectrum to be able to easily combine Data Warehouse data with Data Lake data.  And the "Accoutrements Yodelling Pickle" certainly seems like it may be worth further exploration...
+* Click "Run query".  Here you can see the power of Redshift with Spectrum to be able to easily combine Data Warehouse data with Data Lake data.  And the "Accoutrements Yodelling Pickle" product and reviews certainly seem like they may be worth further exploration...
 
 ![screenshot](images/RS13.png)
 
