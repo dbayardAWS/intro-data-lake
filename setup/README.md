@@ -17,12 +17,12 @@ In this document, you will setup your AWS account to run the Intro to Data Lake 
 * These setup instructions describe the steps that should be done once per account (as compared to once per user).
 * If you are running this lab in your personal account, simply run these instructions as-is.
 * The labs should be able to run in any AWS region, but the public dataset we will use resides in us-east-1, so using us-east-1 should be slightly faster.
-* The labs assume that the VPC and subnets to be used already exist.  The typical default VPC and subnets will work fine for this lab.
+* The labs assume that the VPC and subnets already exist.  The typical default VPC and subnets will work fine for this lab.
 
 ## Creating Users
-* The users will be using S3, Glue, Athena, Redshift, and Cloudwatch and should have at least admin privileges for those services as well as AWS Console access.
+* The users will be using S3, Glue, Athena, Redshift, and maybe Cloudwatch and should have full privileges for those services as well as AWS Console access.
 * This lab has been tested with users who have the AdministratorAccess policy.
-* Alternatively, the lab has also been tested with a user who has these policies attached:
+* Alternatively, the lab has also been tested with a user who has only these policies attached:
   * AmazonS3FullAccess
   * AWSGlueConsoleFullAccess
   * AmazonAthenaFullAccess
@@ -45,7 +45,7 @@ In this document, you will setup your AWS account to run the Intro to Data Lake 
 
 
 ## Account Service Limits
-* Each user will create one Glue Crawlers and optionally one Glue ETL job.  Depending on the number of users and the number of existing glue resources already provisioned, you may need to request a service quota increase for Glue.  As a best practice, you should review the # of existing Glue crawlers and Glue ETL jobs in your account, the current limits of these in your account, and the # of expected lab users.  Please do this a few days PRIOR to the labs.
+* Each user will create one Glue Crawler and optionally one Glue ETL job.  Depending on the number of users and the number of existing glue resources already provisioned in your account, you may need to request a service quota increase for Glue.  As a best practice, you should review the # of existing Glue crawlers and Glue ETL jobs in your account, the current limits of these in your account, and the # of expected lab users.  Please do this a few days PRIOR to the labs.
   * The default limit of Glue Crawlers per account is 50
   * The default limit of Glue ETL Jobs per account is 250
 
@@ -115,4 +115,4 @@ In this section we will create an IAM role for Glue that can access S3.  For ref
 
 
 ## Before You Leave
-Once all of your user are done with the lab, please follow the cleanup instructions to avoid having to pay for unused resources.
+Once all of your users are done with the lab, please follow the cleanup instructions to avoid having to pay for unused resources.

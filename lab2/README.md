@@ -16,7 +16,7 @@ Learn more about Amazon Redshift [here](https://aws.amazon.com/redshift/).
 * [Before You Leave](#before-you-leave)
 
 ## Before You Begin
-* Complete Lab1 (although you do not need to the final optional Glue ETL Job activity).  This lab will reference some of the Data Lake objects created in Lab1.
+* Complete Lab1 (although you do not need to complete the final optional Glue ETL Job activity).  This lab will reference some of the Data Lake objects created in Lab1.
 
 ## Provision a new Redshift Cluster
 
@@ -192,7 +192,7 @@ select product_category, count(*)
 ![screenshot](images/RS12.png)
 
 ## Query data across both Redshift and the data lake
-Amazon Redshift can query both internal tables using Redshift native storage and external tables using S3 storage in the same query. This gives you the flexibility to store highly structured, frequently accessed data on Redshift native storage, keep exabytes of structured and unstructured data in S3, and query seamlessly across both to provide unique insights that you would not be able to obtain by querying independent datasets.
+Amazon Redshift can query internal tables using Redshift native storage and external tables using S3 storage in the same query. This gives you the flexibility to store highly structured, frequently accessed data on Redshift native storage, keep exabytes of structured and unstructured data in S3, and query seamlessly across both to provide unique insights that you would not be able to obtain by querying independent datasets.
 
 Let's see what other reviews our top Hutlzer 571 Banana Slicer reviewers also wrote.  We will take our internal top_banana_reviewers table stored inside Redshift and join it to our external all_reviews_parquet table stored in S3 on the data lake.
 
