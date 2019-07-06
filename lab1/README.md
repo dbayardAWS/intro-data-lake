@@ -306,7 +306,7 @@ You can find more about Glue ETL jobs in the [Glue documentation](https://docs.a
 * If the script editor tips pop-up appears, close it by clicking the X in the upper right
 * Review the job script editor as desired.  Then click the "Run job" button.
 * Click "Run job" in the pop-up window.
-* Wait for the job to finish running.  At first, you won't see much activity in the Logs window (this is while the job is waiting for the temporary Spark environment to be provisioned).  Then, you'll start to see the typical Apache Spark verbose logging messages begin to appear.  Finally, you'll see the SUCEEDED messages in the Logs area and the Run Job button will return to enabled.  Note: the entire process can take 10 minutes or so.
+* Wait for the job to finish running.  At first, you won't see much activity in the Logs window (this is while the job is waiting for the temporary Spark environment to be provisioned).  Then, you'll start to see the typical Apache Spark verbose logging messages begin to appear.  Finally, you'll see the Finished Task messages in the Logs area and the Run Job button will return to enabled.  Note: the entire process can take 10 minutes or so.
 
 ![screenshot](images/ETL4.png)
 
