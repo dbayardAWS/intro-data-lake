@@ -27,6 +27,20 @@ In this document, you will setup your AWS account to run the Intro to Data Lake 
   * AWSGlueConsoleFullAccess
   * AmazonAthenaFullAccess
   * AmazonRedshiftFullAccesss
+  * Plus this custom policy:
+  ```
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*"
+        }
+    ]
+  }
+  ```
+
 
 
 
