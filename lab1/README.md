@@ -4,21 +4,12 @@ In this lab you will setup a basic data lake environment, load some data, and be
 
 
 ## Contents
-* [Before You Begin](#before-you-begin)
 * [Setup your initial Data Lake on S3](#setup-your-initial-data-lake-on-s3)
 * [Catalog our new dataset](#catalog-our-new-dataset)
 * [Query our new data](#query-our-new-data)
 * [OPTIONAL Make our data faster](#optional-make-our-data-faster)
 * [Before You Leave](#before-you-leave)
 
-## Before You Begin
-* Determine and capture the following information.
-  * [Your_AWS_Account_Id]
-  * [Your_AWS_User_Name]
-  * [Your_AWS_Password]
-  * [AWS_Region_to_be_used_for_Lab]
-* Login to the [AWS Console](https://console.aws.amazon.com/). 
-* Switch your console to the assigned [AWS Region](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).  
 
 ## Setup your initial Data Lake on S3
 Amazon Simple Storage Service (S3) is the storage service of choice to build a data lake. With Amazon S3, you can cost-effectively build and scale a data lake of any size in a secure environment where data is protected by 99.999999999% (11 9s) of durability.

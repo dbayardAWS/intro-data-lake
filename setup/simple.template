@@ -1,0 +1,91 @@
+{
+   "AWSTemplateFormatVersion": "2010-09-09",
+ "Parameters" : {
+    "CompanyName": {
+      "Type": "String",
+      "Description" : "unique string",
+      "MinLength": "1",
+      "MaxLength": "41",
+      "ConstraintDescription" : "No spaces and all letters"
+    }
+  },
+   "Resources": {
+     "Cloud9Env": {
+  "Type" : "AWS::Cloud9::EnvironmentEC2",
+  "Properties" : {
+      "InstanceType" : "t2.micro",
+      "Name" : "RedshiftEnv"
+    }
+},
+           "S3Bucket" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties" : {
+          "BucketName" : {
+          "Fn::Join": [ "", [
+              "lab-introdatalake-", {
+                "Ref": "CompanyName"
+              }
+            ]
+          ]
+        }
+         }
+      },
+                 "RedshiftRole": {
+                   "Type": "AWS::IAM::Role",
+                   "Properties": {
+                       "RoleName": "Lab-IntroDataLake-Redshift",
+                     "AssumeRolePolicyDocument": {
+                        "Version" : "2012-10-17",
+                        "Statement": [ {
+                          "Effect": "Allow",
+                          "Principal": {
+                             "Service": [ "redshift.amazonaws.com" ]
+                          },
+                          "Action": [ "sts:AssumeRole" ]
+                       } ]
+                       },
+                       "Path": "/",
+                       "Policies": [ {
+                          "PolicyName": "rootRedshift",
+                          "PolicyDocument": {
+                             "Version" : "2012-10-17",
+                             "Statement": [ {
+                               "Effect": "Allow",
+                               "Action": "*",
+                               "Resource": "*"
+                             } ]
+                          }
+                          } ]
+                        }
+                 },
+                 "GlueRole": {
+                   "Type": "AWS::IAM::Role",
+                   "Properties": {
+                       "RoleName": "Lab-IntroDataLake-Glue",
+                     "AssumeRolePolicyDocument": {
+                        "Version" : "2012-10-17",
+                        "Statement": [ {
+                          "Effect": "Allow",
+                          "Principal": {
+                             "Service": [ "glue.amazonaws.com" ]
+                          },
+                          "Action": [ "sts:AssumeRole" ]
+                       } ]
+                       },
+                       "Path": "/",
+                       "Policies": [ {
+                          "PolicyName": "rootGlue",
+                          "PolicyDocument": {
+                             "Version" : "2012-10-17",
+                             "Statement": [ {
+                               "Effect": "Allow",
+                               "Action": "*",
+                               "Resource": "*"
+                             } ]
+                          }
+                          } ]
+                        }
+                 }
+                }
+               }
+         
