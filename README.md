@@ -8,10 +8,9 @@ This GitHub project provides a series of lab exercises which help users learn ab
 ## Labs
 |# |Lab Name |Lab Description |
 |---- |---- | ----|
-|0 |[Lab Setup Instructions](setup/README.md) |Instructions for the account administrator to setup the lab for users |
 |1 |[Building the Data Lake](lab1/README.md) |Building a data lake with S3, Glue, and Athena |
 |2 |[Extending the lake with Data Warehousing](lab2/README.md) |Integrating Redshift into your Data Lake |
-|3 |[Cleanup](cleanup/README.md) |Notes on how to cleanup when you are done with the lab |
+
 
 
 ## License Summary
