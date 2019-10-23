@@ -31,7 +31,7 @@ select count(*) from reviews;
 
 ![screenshot](images/Athena3.png)
 
-* Click the + sign to the right of New query 1 to open a new query tab.  Enter this query:
+* Click the + sign to the right of the New query tabs to open a new query tab.  Enter this query:
 ```
 select product_title,
        sum(helpful_votes) helpful_votes,
@@ -45,10 +45,10 @@ select product_title,
 
 ![screenshot](images/Athena4.png)
 
-* Notice that the product with the most "helpful review" votes is the Hutzler 571 Banana Slicer.  If you want to view this product, check it out on [amazon.com](https://www.amazon.com/dp/B0047E0EII).  We'll explore some of these most helpful reviews more in Lab2.
+* Notice that the product with the most "helpful review" votes is the Hutzler 571 Banana Slicer.  If you want to view this product, check it out on [amazon.com](https://www.amazon.com/dp/B0047E0EII).  We'll explore some of these most helpful reviews shortly.
   * Hint: To see all of the query output, there is a "See results in full screen" icon to the upper right of the Results table.  Or you can also minimize the left-column of the query edit.  Or reduce the your browser font size (which is the same as pressing the control/command key with the - key).
 
-## Adding other data from the public dataset to your catalog
+## Adding more data from the public Product Reviews dataset to your catalog
 For later in the lab, we want to be able to query all of the public product reviews- not just the ones for products in Kitchen product category.  Amazon.com has made the full set reviews for all of the product categories available on S3 in parquet format.  Rather than downloading and uploading all of this data to our S3 bucket, we will simply point to where it is stored publicly.  We will define our all_reviews_parquet table via a SQL command (this could also be done with the Glue Crawler as we did for the Kitchen product category dataset).
 
 * Click the + sign to open a new query tab.  Enter this query
@@ -113,6 +113,6 @@ select product_title,
 
 ## Congratulations- you have finished the querying the new dataset with Amazon Athena
 
-Click [here](../Lab2/NewLab2.md) to advance to the next section
+Click [here](../Lab2/README.md) to advance to the next section
 
 
