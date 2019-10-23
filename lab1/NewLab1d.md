@@ -9,7 +9,7 @@ In this section, we define a new database for our Product Reviews dataset and us
 
 * If necessary, click on "Get started" on the initial Lake Formation web page
 
-* From Lake Formation Dashboard, click on the "Create database" button under Stage 2
+* Click on the "Dashboard" link on the left hand column of the Lake Formation Console.  Then click on the "Create database" button under Stage 2
 
 ![screenshot](images/New12.png)
 
@@ -18,6 +18,11 @@ In this section, we define a new database for our Product Reviews dataset and us
 * Click Browse next to Location and select the lf-data-lake-bucket-NUMBER/raw/reviews folder
 
 ![screenshot](images/New13.png)
+
+* Unselect the "Use only IAM access control" box.
+
+![screenshot](images/New13b.png)
+
 
 * Click "Create database"
 
@@ -50,10 +55,11 @@ At this point in our lab, we have uploaded a new dataset but we don't really kno
 
 * On the left-hand column of the Lake Formation console, click on "Crawlers" under "Register and ingest"
 
-
-![screenshot](images/New18.png)
+![screenshot](images/New17b.png)
 
 * Click the "Add crawler" button.  A Glue Crawler can inspect our new dataset and try to determine its contents and structure for us.
+
+![screenshot](images/New18.png)
 
 * Enter "Crawl_raw_reviews" for the Crawler name
 * Click Next
@@ -64,11 +70,9 @@ At this point in our lab, we have uploaded a new dataset but we don't really kno
 * Click on the folder icon to pop open the Choose S3 path window.
 * Expand the lf-data-lake-bucket-[NUMBER] bucket.  Expand the raw folder. Select the "reviews" folder.
 
-
+![screenshot](images/New19.png)
 
 BE SURE TO CHOOSE THE REVIEWS FOLDER, NOT THE FILE INSIDE THE FOLDER.
-
-![screenshot](images/New19.png)
 
 * Click the Select button to close the pop-up.  Your include path should look like "s3://lf-data-lake-bucket-[NUMBER]/raw/reviews"
 * Click Next
