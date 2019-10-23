@@ -12,7 +12,7 @@ Redshift Spectrum is integrated with the Glue Data Catalog, so all we need to do
 -- be sure to change the 0000000000000 to your AWS account #
 create external schema reviews_data_lake 
 from data catalog 
-database 'reviews_db' 
+database 'reviews' 
 iam_role 'arn:aws:iam::00000000000000:role/Lab-IntroDataLake-Redshift';
 ```
 
