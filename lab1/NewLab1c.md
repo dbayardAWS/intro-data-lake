@@ -60,4 +60,4 @@ aws iam list-roles | grep Lab-IntroDataLake-Redshift | grep arn
 
 ## Congratulations- you have finished the ingesting the new dataset into S3
 
-Click [here](../NewLab1d.md) to advance to the next section
+Click [here](NewLab1d.md) to advance to the next section

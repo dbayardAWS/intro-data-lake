@@ -113,6 +113,6 @@ select product_title,
 
 ## Congratulations- you have finished the querying the new dataset with Amazon Athena
 
-Click [here](../NewLab1f.md) to advance to the next section
+Click [here](../Lab2/NewLab2.md) to advance to the next section
 
 

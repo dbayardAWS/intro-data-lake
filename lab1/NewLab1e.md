@@ -28,4 +28,4 @@ In this section, we will grant Lake Formation permissions for users (and ourselv
 
 ## Congratulations- you have finished the permissioning the new dataset
 
-Click [here](../NewLab1f.md) to advance to the next section
+Click [here](NewLab1f.md) to advance to the next section

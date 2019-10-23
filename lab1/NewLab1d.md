@@ -118,4 +118,4 @@ BE SURE TO CHOOSE THE REVIEWS FOLDER, NOT THE FILE INSIDE THE FOLDER.
 
 ## Congratulations- you have finished the cataloging the new dataset
 
-Click [here](../NewLab1e.md) to advance to the next section
+Click [here](NewLab1e.md) to advance to the next section

@@ -32,4 +32,4 @@ Using the "View run details" button on the history subtab, you can see a graph w
 ## When you have finished the Lake Formation Intermediate Exercises, continue on to the next section
 
 
-Click [here](../NewLab1b.md) to advance to the next section
+Click [here](NewLab1b.md) to advance to the next section

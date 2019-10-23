@@ -75,4 +75,4 @@ Note: As multiple users may be using the same S3 bucket in the labs, please use 
 ## Congratulations- you have finished the prerequisites for this section of the labs.
 
 
-Click [here](../NewLab1c.md) to advance to the next section
+Click [here](NewLab1c.md) to advance to the next section
