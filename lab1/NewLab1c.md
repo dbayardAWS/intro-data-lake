@@ -26,7 +26,7 @@ If you are new to Cloud9, you can review the IDE tutorial at [https://docs.aws.a
 
 ![screenshot](images/New5c.png)
 
-* Copy this command and paste it into the bash terminal and run it
+* Copy these commands and paste them into the bash terminal and run it
 
 ```
 ## Try to determine BUCKET and FOLDER names automatically
@@ -58,6 +58,6 @@ aws iam list-roles | grep Lab-IntroDataLake-Redshift | grep arn
 
 ![screen](images/New10.png)
 
-## Congratulations- you have finished the ingesting the new dataset into S3
+## Congratulations- you have finished ingesting the new dataset into S3
 
 Click [here](NewLab1d.md) to advance to the next section

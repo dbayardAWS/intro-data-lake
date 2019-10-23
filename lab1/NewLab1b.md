@@ -32,7 +32,7 @@ Leave the other parameters at their defaults as you advance through the steps an
 ![screenshot](images/New1b.png)
 
 
-## Setup the Data Lake on S3
+## Setup the Data Lake Structure on S3
 Amazon Simple Storage Service (S3) is the storage service of choice to build a data lake. With Amazon S3, you can cost-effectively build and scale a data lake of any size in a secure environment where data is protected by 99.999999999% (11 9s) of durability.
 
 With a data lake built on Amazon S3, you can use native AWS services to run big data analytics, artificial intelligence (AI), machine learning (ML), high-performance computing (HPC) and media data processing applications to gain insights from your unstructured data sets. Because Amazon S3 supports a wide range of features, IT managers, storage administrators, and data scientists are empowered to enforce access policies, manage objects at scale and audit activities across their S3 data lakes.
@@ -59,7 +59,6 @@ The S3 bucket that we will use in these labs should already exist.  It was creat
 ### Create folders in the S3 bucket to represent your data lake structure
 For this lab, we will define a folder hierarchy for our data lake.  At the top-level, we will have separate folders for "raw" datasets and for "processed" datasets.  Within each of those folders, we will use sub-folders to indicate the dataset name.  In short, we are implementing a hierarchy structure of Lifecycle then Data Type for this example data lake.  If you are curious, you can read more about Data Lake hierarchy design at the [AWS Data Lake Reference Architecture site](https://github.com/aws-samples/aws-dbs-refarch-datalake/tree/master/src/storage-foundation).
 
-Note: As multiple users may be using the same S3 bucket in the labs, please use your initials when creating/naming folders.
 
 * Click on "Create folder"
 * Enter the name "raw"
