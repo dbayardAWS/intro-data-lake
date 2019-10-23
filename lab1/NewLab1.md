@@ -22,7 +22,7 @@ NOTE: We recommend you use a browser other than Internet Explorer.
 
 ![screenshot](images/New0c.png)
 
-Hint: During the Lake Formation lab, you will launch a Blueprint to import database data which takes a few minutes to run.  While waiting for the Blueprint to finish, you can open up another browser tab and view the status of the Glue Workflow that runs your Blueprint.  Use this link in a new browser tab: [https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=workflows](https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=workflows)
+* Hint: During the Lake Formation lab, you will launch a Blueprint to import database data which takes a few minutes to run.  While waiting for the Blueprint to finish, you can open up another browser tab and view the status of the Glue Workflow that runs your Blueprint.  Use this link in a new browser tab: [https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=workflows](https://console.aws.amazon.com/glue/home?region=us-east-1#etl:tab=workflows)
 
 ![screenshot](images/New0e.png)
 
@@ -30,7 +30,7 @@ Using the "View run details" button on the history subtab, you can see a graph w
 
 ![screenshot](images/New0f.png)
 
-Hint: When you first use Athena to query data, you may be asked to setup a query result location as shown below:
+* Hint: When you first use Athena to query data, you may be asked to setup a query result location as shown below:
 
 ![screenshot](images/New0g.png)
 
