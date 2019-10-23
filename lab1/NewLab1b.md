@@ -18,10 +18,10 @@ This section of the lab has some additional prerequisites needed which we will n
 
 This CloudFormation stack will create a few additional items used in this section of today's lab.  Specifically, it will create an IAM policy to be used by Redshift and a Cloud9 browser-based development environment to be used to easily invoke the AWS CLI.
 
-*	Right-click on this [link](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=kinesis-replay-infrastructure&templateURL=https://dave-kinesis-lab.s3.amazonaws.com/simpleNoS3.template) and open it in a new tab to launch the CloudFormation template for this part of our lab. 
+*	Right-click on this [link](https://console.aws.amazon.com/cloudformation/home#/stacks/new?stackName=DataLakeStack&templateURL=https://dave-kinesis-lab.s3.amazonaws.com/simpleNoS3.template) and open it in a new tab to launch the CloudFormation template for this part of our lab. 
 
 
-* Name the stack "Data Lake Stack".  
+* Name the stack "DataLakeStack".  
 
 ![screenshot](images/New1a.png)
 

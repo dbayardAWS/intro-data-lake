@@ -3,7 +3,9 @@ These labs provide you an introduction to building a data lake on AWS.  You will
 
 ## Complete the Lake Formation Lab if you have not already
 
-* Open this page in a browser and follow the lab instructions: https://lakeformation.aworkshop.io/
+* Open this page in a different browser tab and follow the lab instructions: https://lakeformation.aworkshop.io/
+
+NOTE: We recommend you use a browser other than Internet Explorer.
 
 * You will need to be sure to complete the "Create EC2 Key Pair" and "CloudFormation Template" steps in the "Prerequisites" section prior to starting the Exercise.
 
