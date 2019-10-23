@@ -30,6 +30,22 @@ Using the "View run details" button on the history subtab, you can see a graph w
 
 ![screenshot](images/New0f.png)
 
+Hint: When you first use Athena to query data, you may be asked to setup a query result location as shown below:
+
+![screenshot](images/New0g.png)
+
+If you see this prompt, click on the "setup a query result location" link and enter this value for the query result location:
+
+```
+s3://lf-data-lake-bucket-[number]/
+````
+
+where you replace [number] with you account id (without using hyphens).  Your account id is shown on the top menu bar after the user name (which should currently be showing lf-admin).
+
+![screenshot](images/New0h.png)
+
+
+
 
 ## When you have finished the Lake Formation Intermediate Exercises, continue on to the next section
 
