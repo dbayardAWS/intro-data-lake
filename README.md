@@ -8,8 +8,9 @@ This GitHub project provides a series of lab exercises which help users learn ab
 ## Labs
 |# |Lab Name |Lab Description |
 |---- |---- | ----|
-|1 |[Building the Data Lake](lab1/README.md) |Building a data lake with S3, Glue, and Athena |
-|2 |[Extending the lake with Data Warehousing](lab2/README.md) |Integrating Redshift into your Data Lake |
+|1 |[Lake Formation](lab1/README.md) |Getting started with Lake Formation |
+|2 |[Building the Data Lake](lab1/NewLab1b.md) |Building a data lake with S3, Glue, and Athena |
+|3 |[Extending the lake with Data Warehousing](lab2/README.md) |Integrating Redshift into your Data Lake |
 
 
 
