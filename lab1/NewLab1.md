@@ -40,7 +40,7 @@ If you see this prompt, click on the "setup a query result location" link and en
 s3://lf-data-lake-bucket-[number]/
 ````
 
-where you replace [number] with you account id (without using hyphens).  Your account id is shown on the top menu bar after the user name (which should currently be showing lf-admin).
+where you replace [number] with you account id (without using hyphens).  Your account id is shown on the top menu bar after the user name.
 
 ![screenshot](images/New0h.png)
 
