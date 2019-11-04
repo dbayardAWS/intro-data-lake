@@ -10,16 +10,9 @@ Amazon Athena is a serverless interactive query service that makes it easy to an
 
 
 
-* With the reviews table selected in Lake Formation, use the Actions button and choose "View data"
+* Navigate to the Athena console
 
-![screenshot](images/New27.png)
-
-which after you click on an informational pop-up, will take you to the Amazon Athena console and show you sample data from the reviews dataset:
-
-![screenshot](images/New28.png)
-
-
-* Make sure the Database drop-down points to "reviews".  If not, change it.  You should see your reviews table.
+* In the Athena console, make sure the Database drop-down points to "reviews".  If not, change it.  You should see your reviews table.
 
 ![screenshot](images/Athena2.png)
 
