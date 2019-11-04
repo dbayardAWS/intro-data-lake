@@ -111,3 +111,4 @@ select
 
 You have ingested a new dataset to your data lake, cataloged it, granted permissions on it, and queried it directly from the data lake (Athena) and via a cloud-native data warehouse (Redshift).
 
+Click [here](../README.md) to return to the main menu.
