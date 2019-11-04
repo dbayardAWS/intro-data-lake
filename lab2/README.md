@@ -18,8 +18,9 @@ Learn more about Amazon Redshift [here](https://aws.amazon.com/redshift/).
 ![screenshot](images/RS1.png)
 
 * In the cluster configuration section, you can experiment with the cluster size settings. When you are done, restore the settings to their defaults (20 GB) and click the "Launch this cluster" button
-* In the cluster identifier field, change the field to be "redshift-cluster-[initials]".
+
 * Enter a value for the master user password that you will remember.  If you want a suggestion, you can use "AWSuser1!"
+
 * In the Available IAM roles drop-down, choose "Lab-IntroDataLake-Redshift" role.
 
 ![screenshot](images/RS2.png)
