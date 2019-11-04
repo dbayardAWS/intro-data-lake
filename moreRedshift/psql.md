@@ -113,7 +113,7 @@ Note: If you are not able to connect (the command hangs then eventually times ou
 
 * Enter the password and have fun.
 
-Note: if you followed the Immersion Day labs and didn't change the default password in the CloudFormation template, then the awsuser password will default to Awsuser123
+Note: if you followed the Intro to Data Lake Immersion Day labs and used the suggested password in the instructions, then the awsuser password will be AWSuser1!
 
 ![screen](images/rs6.png)
 
@@ -124,20 +124,33 @@ Or, look for the "Introduction to psql command-line" entry under the "Using SQL"
 Here are some example commands you can run inside psql:
 
 ```
+-- create a simple table
 CREATE TABLE hello_world   (id int, fname varchar(30));
-\timing
+
+-- list databases
 \l
+
+-- list schemas
 \dn
-\d
-\dt hello_world
+
+-- list tables
+\dt
+
+-- turn on timing for SQL statements
+\timing
+
+-- change the psql working directory to where we download some utility scripts
 \cd /home/ec2-user/environment/amazon-redshift-utils/src/AdminScripts/
+
+-- execute the top_queries.sql script from the working directory
 \i top_queries.sql
+
+-- quit psql
 \q
 
 ```
 
 
-Note: If your Cloud9 environment goes to sleep (by default after 30 minutes of inactivity), then when you re-launch the Cloud9 environment, it will have a new Public IP address.  As such you may need to repeat the steps in the [Setup network access between Cloud9 and your Redshift cluster](#Setup-network-access-between-Cloud9-and-your-Redshift-cluster) section.
 
 ## More Redshift - Data Loading
 Click [here](dataload/DataLoad.md) to advance to the next section which goes deeper into data loading into Redshift.
