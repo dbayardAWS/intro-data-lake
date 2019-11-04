@@ -55,6 +55,11 @@ call deep_copy('orders');
 
 ````
 
+While the deep_copy stored procedure is running, you can use the Redshift console's Queries tab to see what is running:
+
+![screen](../images/Queries.png)
+
+
 ##  User-Defined Functions
 
 You can create a custom user-defined scalar function (UDF) using either a SQL SELECT clause or a Python program. The new function is stored in the database and is available for any user with sufficient privileges to run, in much the same way as you run existing Amazon Redshift functions.
