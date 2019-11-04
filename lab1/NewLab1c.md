@@ -32,9 +32,11 @@ If you are new to Cloud9, you can review the IDE tutorial at [https://docs.aws.a
 ## Try to determine BUCKET and FOLDER names automatically
 export BUCKET=`aws s3 ls | grep lf-data-lake | cut -d " " -f 3`
 echo S3 Bucket is $BUCKET
+export S3PROCFOLDER=`aws s3 ls $BUCKET/ | grep process | cut -d " " -f 29`
 export S3FOLDER=`aws s3 ls $BUCKET/ | grep raw | cut -d " " -f 29`
 echo S3 Folder is $S3FOLDER
 
+aws s3 md s3://$BUCKET/${S3PROCFOLDER}reviews/
 aws s3 cp s3://amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz s3://$BUCKET/${S3FOLDER}reviews/
 aws s3 ls s3://$BUCKET/${S3FOLDER}reviews/
 
