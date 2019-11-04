@@ -24,19 +24,30 @@ https://docs.aws.amazon.com/glue/latest/dg/dev-endpoint-notebook-server-consider
 
   *	Endpoint-name: introdatalake-devEndpoint
   * IAM Role: Select the role Lab-IntroDataLake-Glue
-  * DPU’s: 5 (the default)
-Expand monitoring options.  Check the box for Spark UI.  Set the S3 folder to glue-sparkui-history
 
-Click Next
+* Expand the monitoring options.  
 
-Choose Skip Networking information
+  * Check the box for Spark UI.  
+  * Use the folder icon to browse/select the glue-sparkui-history folder
 
-Click next
+![screen](images/Glue7.png)  
 
-We will use a Sagemaker notebook.  Click Next on the SSH key page.
+* Click Next
 
-Click Finish
+* On the Network page, Choose Skip Networking information
+
+* Click next
+
+* On the Add an SSH public key page, leave the defaults.
+
+* Click next
+
+* Click Finish
+
+At this point, you Developer Endpoint is being provisioned.  It will take about 5 minutes, but don't wait for it to finish.  Move on to the next section.
+
+![screen](images/Glue8.png)  
 
 ## Congratulations - you have launched a Developer Endpoint
-Take 5minutes or so to provision - while it is provisioning, please continue to the [next section](glue3.md).
+While you wait for your Glue Developer Endpoint to be provisioned, please continue to the [next section](glue3.md).
 
