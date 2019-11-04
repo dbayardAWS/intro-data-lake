@@ -36,7 +36,7 @@ export S3PROCFOLDER=`aws s3 ls $BUCKET/ | grep process | cut -d " " -f 29`
 export S3FOLDER=`aws s3 ls $BUCKET/ | grep raw | cut -d " " -f 29`
 echo S3 Folder is $S3FOLDER
 
-aws s3 md s3://$BUCKET/${S3PROCFOLDER}reviews/
+aws s3api put-object --bucket $BUCKET --key ${S3PROCFOLDER}reviews/
 aws s3 cp s3://amazon-reviews-pds/tsv/amazon_reviews_us_Kitchen_v1_00.tsv.gz s3://$BUCKET/${S3FOLDER}reviews/
 aws s3 ls s3://$BUCKET/${S3FOLDER}reviews/
 
