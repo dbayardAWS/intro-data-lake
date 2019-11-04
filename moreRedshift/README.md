@@ -1,6 +1,7 @@
 # More Redshift
 This section provides additional redshift labs.  This is based off the work from https://github.com/veerendranayak/redshift-workshop , modified to fit with the setup of the other Intro to Data Lake labs.
 
+You should do all the below parts in order as there are dependencies between them.
 
 ## More Redshift Labs
 |Part |Lab Name |Lab Description |

@@ -22,7 +22,7 @@ You can find psql information [here](https://www.postgresql.org/docs/8.4/app-psq
 
 ![screenshot](images/prereq2.png)
 
-* In the terminal, paste and run the following code to setup the boto3 and java 1.8 environment.
+* In the terminal, paste and run the following code to install the psql database client as well as some Amazon Redshift utility scripts.
 
 ```
 git clone https://github.com/awslabs/amazon-redshift-utils.git
@@ -37,9 +37,9 @@ When the code is finished running, you should see output like this:
 
 
 
-## Setup network access between Cloud9 and your Redshift cluster
+## Setup network access between Cloud9 and your Redshift cluster (MAY BE OPTIONAL)
 
-NOTE: If you are following the Redshift Immersion Day lab and you left the InboundTraffic parameter at its default of 0.0.0.0/0, then you do not need to do this section and jump to the [next section](#Gather-the-endpoint-hostname-of-your-Redshift-cluster).
+NOTE: If you are following the Intro to Data Lakes Immersion Day lab, then you do not need to do this section and jump to the [next section](#Gather-the-endpoint-hostname-of-your-Redshift-cluster).
 
 * While leaving your Cloud9 environment open, navigate to the EC2 Console in a different browser tab.
 
