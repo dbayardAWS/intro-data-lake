@@ -137,7 +137,7 @@ CREATE TABLE hello_world   (id int, fname varchar(30));
 \dt
 
 -- turn on timing for SQL statements
-\timing
+\timing on
 
 -- change the psql working directory to where we download some utility scripts
 \cd /home/ec2-user/environment/amazon-redshift-utils/src/AdminScripts/

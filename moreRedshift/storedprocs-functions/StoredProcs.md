@@ -22,7 +22,7 @@ BEGIN
   EXECUTE 'drop table '||source_tab||'_temp';
   END;
 $$ LANGUAGE plpgsql;
-/
+
 
 ````
 
@@ -33,12 +33,16 @@ $$ LANGUAGE plpgsql;
 copy orders from 's3://redshift-immersionday-labs/data/orders/orders.tbl.'
 iam_role '[Your-Redshift_Role-ARN]'
 region 'us-west-2' lzop delimiter '|' ;
+
+
 ````
 
 ## To check for tables with high amounts of unsorted data, execute the following query:
 
 ````
-SELECT * FROM svv_table_info where unsorted > 10
+SELECT * FROM svv_table_info where unsorted > 10;
+
+
 ````
 
 Note the “unsorted” result for the orders table shows a value higher than 10 indicating this table may be a good candidate for sorting either by using VACUUM, or by using our more efficient and faster deep_copy stored procedure. We can run "Vacuum sort only orders" to resort the data but deep copy can be faster than VACUUM. 
@@ -47,6 +51,8 @@ Note the “unsorted” result for the orders table shows a value higher than 10
 
 ````
 call deep_copy('orders');
+
+
 ````
 
 ##  User-Defined Functions
@@ -69,7 +75,8 @@ as $$
     else $2
   end
 $$ language sql;
-/
+
+
 ````
 
 The following example query joins the customer and orders tables and calls the our new f_sql_greater function to return either the account balance from customer table or the total price from orders, whichever is greater.
@@ -81,6 +88,8 @@ where c.c_custkey=o.o_custkey
 and c_mktsegment ='BUILDING'
 and o_orderpriority='1-URGENT'
 and o_orderdate between '1993-07-05' and '1993-07-07' limit 10;
+
+
 ````
 
 ### Creating a Scalar Python UDF
@@ -97,7 +106,8 @@ as $$
     return a
   return b
 $$ language plpythonu;
-/
+
+
 ````
 
 ````
@@ -107,6 +117,7 @@ where c.c_custkey=o.o_custkey
 and c_mktsegment ='BUILDING'
 and o_orderpriority='1-URGENT'
 and o_orderdate between '1993-07-05' and '1993-07-07' limit 10;
+
 ````
 
 ## Congratulations - You have completed the More Redshift portion of the labs.

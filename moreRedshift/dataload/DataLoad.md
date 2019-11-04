@@ -10,7 +10,7 @@ Refer to the [previous instructions](../README.md) for instructions.
 Copy the following create table statements into your psql client to create tables in the database.  
 
 ```
-\timing
+\timing on
 
 DROP TABLE IF EXISTS supplier;
 DROP TABLE IF EXISTS part;
@@ -76,6 +76,8 @@ create table supplier (
   S_ACCTBAL decimal(18,4),
   S_COMMENT varchar(101))
 ;                                                         
+
+
 ```
 
 ## Loading Data
@@ -99,7 +101,7 @@ Go to "See IAM Roles" and copy Role ARN in a text editor. This ARN has to replac
 ##
 
 ## Paste the following commands into a text editor, and search/replace the [Your-Redshift-Role-ARN] with the real Role ARN
-You can use Cloud9 as a text editor.  Create a new file.  Paste the below commands into the new file editor tab.  Then do a search/replace.
+You can use Cloud9 as a text editor.  Create a new file.  Paste the below commands into the new file editor tab.  Then use Cloud9's Find menu to Replace the [Your-Redshift-Role-ARN] text.
 
 ```
 COPY region FROM 's3://redshift-immersionday-labs/data/region/region.tbl.lzo'
@@ -125,16 +127,28 @@ region 'us-west-2' lzop delimiter '|' ;
 copy supplier from 's3://redshift-immersionday-labs/data/supplier/supplier.json' manifest
 iam_role '[Your-Redshift-Role-ARN]'
 region 'us-west-2' lzop delimiter '|' ;
+
+
 ```
+
+![screen](../images/Replace1.png)
 
 ## Paste the adjusted copy commands into your psql client to run them.
 In this lab we are using 2 dc2.large clusters nodes. Our cluster is in the us-east-1 region (Northern Virginia), but our source data is in the us-west-2 region (Oregon) so it may take a few minutes for the load to finish.  The estimated time to load the data is as follows, note you can check timing information on actions in the performance and load tabs on the redshift console:
 * REGION (5 rows) - a dozen seconds
 * NATION (25 rows) - a dozen seconds
-* CUSTOMER (15M rows) – a minute
+* CUSTOMER (15M rows) – two minutes
 * ORDERS - (76M rows) - three minutes
-* PART - (20M rows) - a minute
-* SUPPLIER - (1M rows) - a dozen seconds
+* PART - (20M rows) - two minutes
+* SUPPLIER - (1M rows) - thirty seconds
+
+While the loads are running, you can go to the Redshift Console, click on your cluster, and look at the Loads tab for more details:
+
+![screen](../images/Loads.png)
+
+Feel free to explore the Redshift console as the loads complete.
+
+
 
 Note: A few key takeaways from the above COPY statements.
 1. COPY for the REGION table points to a specfic file (region.tbl.lzo) while COPY for other tables point to a prefix to multiple files (lineitem.tbl.)
@@ -144,7 +158,12 @@ Note: A few key takeaways from the above COPY statements.
 
 ````
 select * from svv_table_info where schema='public' ;
+
 ````
+Note: the very first time you query svv_table_info may take a minute as Redshift has to compile a large number of query segments that sit behind the svv_table_info view.  
+
+
+
 How about getting count of customers from "Asia" REGION
 
 ````
@@ -153,6 +172,7 @@ FROM customer c
 INNER JOIN nation n ON c.c_nationkey = n.n_nationkey
 INNER JOIN region r ON n.n_regionkey = r.r_regionkey
 WHERE r.r_name = 'ASIA';
+
 ````
 
 ## Troubleshooting Loads
