@@ -276,6 +276,8 @@ print ("Done3")
 
 https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-partitions.html
 
+https://answers.amazon.com/posts/81794?ref=
+
 add the
 
 ```

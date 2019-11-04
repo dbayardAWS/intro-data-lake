@@ -32,7 +32,7 @@ You should see no tables listed (because the IAM Role you specified in your Reds
 
 ## Grant Lake Formation permissions to Redshift
 
-* In another browser tab (leaving the Redshift query editor tab open for later), navigate to the Lake Formation console.
+* In another browser tab (leaving the Redshift query editor tab open for later), navigate to the Lake Formation console.  You can right-click on this url [https://console.aws.amazon.com/lakeformation/home?region=us-east-1#dashboard](https://console.aws.amazon.com/lakeformation/home?region=us-east-1#dashboard).
 
 * Click on "Tables" under "Data catalog" on the left hand column of the Lake Formation console.
 
