@@ -32,7 +32,7 @@ This lab will require 2 new folders in our S3 bucket: one to hold our ETL script
 
 * Navigate to the S3 console
 
-* Click on your “lf-datalake-[number]” bucket
+* Click on your “lf-data-lake-bucket-[number]” bucket
 
 * Create a new folder called  “scripts-etl”
 
@@ -67,7 +67,7 @@ We will create a new Glue job to convert our raw CSV data from the raw folder an
 * On this page, enter these details:
 
   * Script name: leave at as default
-  * S3 path for script: browse for the scripts-etl folder in your lf-datalake bucket
+  * S3 path for script: browse for the scripts-etl folder in your lf-data-lake-bucket bucket
   * S3 path for temp files: Do not change as we can use the default glue location
 
 * Expand the Advanced Properties section and enable Job Bookmarks
@@ -76,7 +76,7 @@ We will create a new Glue job to convert our raw CSV data from the raw folder an
 
   * Check the box in front of job metrics
   * Check the box in front of SparkUI
-  * Select the glue-sparkui-history folder from your lf-datalake bucket
+  * Select the glue-sparkui-history folder from your lf-data-lake-bucket bucket
 
 * Click next
 
@@ -90,7 +90,7 @@ We will create a new Glue job to convert our raw CSV data from the raw folder an
 
 * For the data target, select Create Tables in your data target.
 
-* Select S3 as the data, and type as Parquet. Enter s3://lf-datalake-[number]/processed/reviews
+* Select S3 as the data, and type as Parquet. Enter s3://lf-data-lake-bucket-[number]/processed/reviews
 
 * Click next
 

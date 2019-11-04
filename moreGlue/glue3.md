@@ -1,5 +1,5 @@
 # More Glue - Install a Spark History Server
-In this section, we are going to launch a Spark History Server on an EC2 instance.  We are doing this as a way to be able to use the "Spark UI" with our Glue Developer Endpoint.  The Spark History Server process running on EC2 will have access to the SparkUI event logs which are being written to the glue-sparkui-history folder in your S3 lf-datalake bucket.  The History Server uses those event logs to be able to run the Spark UI web application.
+In this section, we are going to launch a Spark History Server on an EC2 instance.  We are doing this as a way to be able to use the "Spark UI" with our Glue Developer Endpoint.  The Spark History Server process running on EC2 will have access to the SparkUI event logs which are being written to the glue-sparkui-history folder in your S3 lf-data-lake-bucket.  The History Server uses those event logs to be able to run the Spark UI web application.
 
 
 Then start History Server
