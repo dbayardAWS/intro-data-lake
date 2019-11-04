@@ -22,6 +22,14 @@ Glue concepts used in the lab:
 ## Prepare for our lab by creating some new S3 folders
 This lab will require 2 new folders in our S3 bucket: one to hold our ETL script and one to hold our SparkUI event files.
 
+### Signin to the AWS Console as the Lake Formation Administrator
+
+* Navigate to the AWS Console at https://console.aws.amazon.com/console/home?region=us-east-1
+
+* Check if you are signed-in as the lf-admin user.  If not, sign-out and sign-back in as lf-admin.  By default, the password for lf-admin will be Password1!
+
+![screenshot](images/New1.png)
+
 * Navigate to the S3 console
 
 * Click on your “lf-datalake-[number]” bucket

@@ -4,6 +4,15 @@ Previously, you setup a Cloud9 browser development environment.  You will instal
 
 You can find psql information [here](https://www.postgresql.org/docs/8.4/app-psql.html).
 
+### Signin to the AWS Console as the Lake Formation Administrator
+
+* Navigate to the AWS Console at https://console.aws.amazon.com/console/home?region=us-east-1
+
+* Check if you are signed-in as the lf-admin user.  If not, sign-out and sign-back in as lf-admin.  By default, the password for lf-admin will be Password1!
+
+![screenshot](images/New1.png)
+
+## Installing psql
 
 * Open up your Cloud9 environment if not already open
 
