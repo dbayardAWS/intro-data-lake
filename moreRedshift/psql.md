@@ -37,19 +37,19 @@ When the code is finished running, you should see output like this:
 
 
 
-## Setup network access between Cloud9 and your Redshift cluster (MAY BE OPTIONAL)
+## Setup network access between Cloud9 and your Redshift cluster 
 
-NOTE: If you are following the Intro to Data Lakes Immersion Day lab, then you do not need to do this section and jump to the [next section](#Gather-the-endpoint-hostname-of-your-Redshift-cluster).
+* While leaving your Cloud9 environment open, navigate to the Redshift Console in a different browser tab.
 
-* While leaving your Cloud9 environment open, navigate to the EC2 Console in a different browser tab.
+* Click on Clusters on the left hand column.  Then select your redshift cluster.
 
-* Click on Instances on the left hand column.  Select the ec2 instance that corresponds to your Cloud9 environment.  Make a note of the Public IP address.  For instance, copy the Public IP address to your clipboard as shown:
+* In the bottom half of the screen, locate the VPC Security Group link and click on it.
 
-![screen](images/net1.png)
+![screen](images/net0.png)
 
-* Click on "Security Groups" under "NETWORK & SECURITY" on the left-hand column.  Then select the Security Group that corresponds to your Redshift Cluster.  If following the Redshift Immersion Day labs, its name will be prefixed with the name you gave your CloudFormation stack.
+This will navigate you to the EC2 console for the Security Group used by your Redshift Cluster.
 
-* Be sure the "Inbound" tab is selected on the bottom half of the page and then click Edit.
+* Select the "Inbound" tab on the bottom half of the page and then click Edit.
 
 ![screen](images/net2.png)
 
@@ -57,7 +57,7 @@ NOTE: If you are following the Intro to Data Lakes Immersion Day lab, then you d
 
 * In the new line, use the Type drop-down to choose Redshift
 
-* In the source field, enter/paste the Public IP address of your Cloud9 ec2 instance AND append "/32" to it.
+* In the source field, choose Anywhere.
 
 ![screen](images/net3.png)
 
@@ -66,7 +66,7 @@ NOTE: If you are following the Intro to Data Lakes Immersion Day lab, then you d
 
 ## Gather the endpoint hostname of your Redshift cluster
 
-If following the Immersion Day labs, this information can be found in the Outputs section of your CloudFormation stack.  Or it can be found via the Redshift console.  We will use the Redshift console to look this up.
+This information can be found via the Redshift console.  
 
 * Navigate to the Redshift console
 
