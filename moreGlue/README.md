@@ -119,5 +119,5 @@ Below is an image (from another Project) that provides a graphical explanation o
 Save the job and close the edit script window (click the X in the upper left)
 
 # Congratulations.  You've created a Glue ETL Job to convert a dataset from CSV format in one location to Parquet format in a different location.
-We have not run the job yet.  We are make and test some script changes first.  Click [here](glue2.md) to advance to the next section.
+We have not run the job yet.  We will make and test some script changes first.  Click [here](glue2.md) to advance to the next section.
 
