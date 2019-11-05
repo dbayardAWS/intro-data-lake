@@ -18,6 +18,15 @@ Glue concepts used in the lab:
 *	You can run your job on demand, or you can set it up to start when a specified trigger occurs. The trigger can be a time-based schedule or an event.
 *	When your job runs, a script extracts data from your data source, transforms the data, and loads it to your data target. The script runs in an Apache Spark serverless environment in AWS Glue.
 
+•	Spark DataFrames: A DataFrame is conceptually equivalent to a table in a relational database or a data frame in R/Python, but with richer optimizations under the hood. DataFrames can be constructed from a wide array of sources such as: structured data files, tables in Hive, or external databases. 
+
+•	Glue DynamicFrames: DynamicFrames are designed to provide maximum flexibility when dealing with messy data that may lack a declared schema. Records are represented in a flexible self-describing way that preserves information about schema inconsistencies in the data.
+
+* For example, with changing requirements, an address column stored as a string in some records might be stored as a struct in later rows. Rather than failing or falling back to a string, DynamicFrames will track both types and gives users a number of options in how to resolve these inconsistencies, providing fine grain resolution options via the ResolveChoice transforms.
+* DynamicFrames also provide a number of powerful high-level ETL operations that are not found in DataFrames. For example, the Relationalize transform can be used to flatten and pivot complex nested data into tables suitable for transfer to a relational database. In additon, the ApplyMapping transform supports complex renames and casting in a declarative fashion.
+* DynamicFrames are also integrated with the AWS Glue Data Catalog, so creating frames from tables is a simple operation. Writing to databases can be done through connections without specifying the password. Moreover, DynamicFrames are integrated with job bookmarks, so running these scripts in the job system can allow the script to implictly keep track of what was read and written.
+* Finally, you can convert between DataFrames and DynamicFrames as needed.
+
 
 ## Prepare for our lab by creating some new S3 folders
 This lab will require 2 new folders in our S3 bucket: one to hold our ETL script and one to hold our SparkUI event files.

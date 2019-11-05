@@ -228,4 +228,6 @@ Click [here](../README.md) to return to the top menu.
 More examples of Glue ETL coding can be found here:
 https://github.com/aws-samples/aws-glue-samples
 
+And a very educational Glue ETL FAQ can be found here: https://github.com/aws-samples/aws-glue-samples/blob/master/FAQ_and_How_to.md
+
 
