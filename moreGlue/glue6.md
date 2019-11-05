@@ -230,4 +230,6 @@ https://github.com/aws-samples/aws-glue-samples
 
 And a very educational Glue ETL FAQ can be found here: https://github.com/aws-samples/aws-glue-samples/blob/master/FAQ_and_How_to.md
 
+And additional Glue resources can be found here: https://aws.amazon.com/glue/resources/
+
 
